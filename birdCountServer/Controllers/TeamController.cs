@@ -10,11 +10,11 @@ using System.Text;
 
 namespace birdCountServer.Controllers
 {
-    public class TestController : ApiController
+    public class TeamController : ApiController
     {
         public string Get()
         {
-            var retBird = string.Empty;
+            var retTeam = string.Empty;
             try
             {
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
@@ -27,17 +27,17 @@ namespace birdCountServer.Controllers
                 {
                     connection.Open();
                     StringBuilder sb = new StringBuilder();
-                    sb.Append("select top 1 BirdName from Birds");
+                    sb.Append("select * from Teams");
                     String sql = sb.ToString();
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            
+
                             while (reader.Read())
                             {
-                               retBird = reader.GetString(0);             
+                                retTeam = reader.GetString(0);
                             }
                         }
                     }
@@ -47,7 +47,7 @@ namespace birdCountServer.Controllers
             {
                 Console.WriteLine(e.ToString());
             }
-            return retBird;
+            return retTeam;
 
         }
     }

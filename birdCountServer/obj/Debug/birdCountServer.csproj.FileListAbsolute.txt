@@ -93,3 +93,4 @@ C:\Users\Stevie\Documents\GitHub\birdCountServer\birdCountServer\bin\Microsoft.A
 C:\Users\Stevie\Documents\GitHub\birdCountServer\birdCountServer\obj\Debug\birdCountServer.csproj.CoreCompileInputs.cache
 C:\Users\Stevie\Documents\GitHub\birdCountServer\birdCountServer\obj\Debug\birdCountServer.dll
 C:\Users\Stevie\Documents\GitHub\birdCountServer\birdCountServer\obj\Debug\birdCountServer.pdb
+C:\Users\Stevie\Documents\GitHub\birdCountServer\birdCountServer\obj\Debug\birdCountServer.csprojResolveAssemblyReference.cache
