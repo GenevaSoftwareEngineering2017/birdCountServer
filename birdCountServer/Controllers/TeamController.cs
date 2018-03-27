@@ -6,15 +6,41 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Data.SqlClient;
 using System.Text;
+using birdCountServer.Domain;
 
 
 namespace birdCountServer.Controllers
 {
+    [RoutePrefix("api/team")]
     public class TeamController : ApiController
     {
-        public string Get()
+        [Route("getall")]
+        public List<Team> GetAll()
         {
-            var retTeam = string.Empty;
+            return RetrieveTeamsFromDB(string.Empty);
+        }
+
+        [Route("getteambyid/{id}")]
+        public Team GetTeam(int id)
+        {
+            return RetrieveTeamsFromDB(string.Format("TeamId = {0}", id)).FirstOrDefault();
+        }
+
+        [Route("getteambyname/{name}")]
+        public Team GetTeam(string name)
+        {
+            return RetrieveTeamsFromDB(string.Format("TeamName = '{0}'", name)).FirstOrDefault();
+        }
+
+        [Route("getteambymethod/{method}")]
+        public Team GetMethod(string method)
+        {
+            return RetrieveTeamsFromDB(string.Format("MethodType = '{0}'", method)).FirstOrDefault();
+        }
+
+        public List<Team> RetrieveTeamsFromDB(string whereClause)
+        {
+            var retTeam = new List<Team>();
             try
             {
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
@@ -27,7 +53,14 @@ namespace birdCountServer.Controllers
                 {
                     connection.Open();
                     StringBuilder sb = new StringBuilder();
-                    sb.Append("select * from Teams");
+
+                    sb.Append(string.Format("select * from Teams "));
+
+                    if (!string.IsNullOrEmpty(whereClause))
+                    {
+                        sb.Append("WHERE " + whereClause);
+                    }
+
                     String sql = sb.ToString();
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -37,7 +70,11 @@ namespace birdCountServer.Controllers
 
                             while (reader.Read())
                             {
-                                retTeam = reader.GetString(0);
+                                var add = new Team();
+                                add.Id = reader.GetInt32(0);
+                                add.Name = reader.GetString(1);
+                                add.Method = reader.GetString(2);
+                                retTeam.Add(add);
                             }
                         }
                     }
@@ -48,7 +85,6 @@ namespace birdCountServer.Controllers
                 Console.WriteLine(e.ToString());
             }
             return retTeam;
-
         }
     }
 }

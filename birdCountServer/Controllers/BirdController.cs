@@ -6,15 +6,35 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Data.SqlClient;
 using System.Text;
+using birdCountServer.Domain;
 
 
 namespace birdCountServer.Controllers
 {
+    [RoutePrefix("api/bird")]
     public class BirdController : ApiController
     {
-        public string Get()
+        [Route("getall")]
+        public List<Bird> GetAll()
         {
-            var retBird = string.Empty;
+            return RetrieveBirdsFromDB(string.Empty);
+        }
+
+        [Route("getbirdbyid/{id}")]
+        public Bird GetBird(int id)
+        {
+            return RetrieveBirdsFromDB(string.Format("BirdId = {0}", id)).FirstOrDefault();
+        }
+
+        [Route("getbirdbyname/{name}")]
+        public Bird GetBird(string name)
+        {
+            return RetrieveBirdsFromDB(string.Format("BirdName = '{0}'", name)).FirstOrDefault();
+        }
+
+        public List<Bird> RetrieveBirdsFromDB(string whereClause)
+        {
+            var retBird = new List<Bird>();
             try
             {
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
@@ -27,7 +47,14 @@ namespace birdCountServer.Controllers
                 {
                     connection.Open();
                     StringBuilder sb = new StringBuilder();
-                    sb.Append("select * from Birds");
+                    
+                    sb.Append(string.Format("select * from Birds "));
+
+                    if (!string.IsNullOrEmpty(whereClause))
+                    {
+                        sb.Append("WHERE " + whereClause);
+                    }
+
                     String sql = sb.ToString();
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -37,7 +64,10 @@ namespace birdCountServer.Controllers
 
                             while (reader.Read())
                             {
-                                retBird = reader.GetString(0);
+                                var add = new Bird();
+                                add.Id = reader.GetInt32(0);
+                                add.Name = reader.GetString(1);
+                                retBird.Add(add);
                             }
                         }
                     }
@@ -48,7 +78,6 @@ namespace birdCountServer.Controllers
                 Console.WriteLine(e.ToString());
             }
             return retBird;
-
         }
     }
 }
