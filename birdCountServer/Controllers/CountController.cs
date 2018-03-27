@@ -18,10 +18,10 @@ namespace birdCountServer.Controllers
             try
             {
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-                builder.DataSource = "birdcountapp.database.windows.net";
-                builder.UserID = "User";
-                builder.Password = "Password1";
-                builder.InitialCatalog = "birdCountApp";
+                builder.DataSource = "birdcount.database.windows.net";
+                builder.UserID = "jmgirvin";
+                builder.Password = "Devan2/12/16";
+                builder.InitialCatalog = "BirdCountDatabase";
 
                 using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
                 {
