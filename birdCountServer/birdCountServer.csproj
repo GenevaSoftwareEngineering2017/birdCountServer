@@ -160,6 +160,7 @@
     <Compile Include="Controllers\WeatherController.cs" />
     <Compile Include="Domain\Bird.cs" />
     <Compile Include="Domain\Team.cs" />
+    <Compile Include="Domain\Weather.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
