@@ -155,11 +155,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
+    <Compile Include="Controllers\Team_MembersController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\WeatherController.cs" />
     <Compile Include="Domain\Bird.cs" />
     <Compile Include="Domain\Effort.cs" />
+    <Compile Include="Domain\Members.cs" />
     <Compile Include="Domain\Team.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
