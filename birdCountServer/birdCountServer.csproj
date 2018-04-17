@@ -160,7 +160,7 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\WeatherController.cs" />
     <Compile Include="Domain\Bird.cs" />
-    <Compile Include="Domain\Effort.cs" />
+    <Compile Include="Domain\Count.cs" />
     <Compile Include="Domain\Members.cs" />
     <Compile Include="Domain\Team.cs" />
     <Compile Include="Global.asax.cs">
