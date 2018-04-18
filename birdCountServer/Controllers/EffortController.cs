@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.Text;
 using birdCountServer.Domain;
 
-namespace EffortCountServer.Controllers
+namespace birdCountServer.Controllers
 {
         [RoutePrefix("api/effort")]
         public class EffortController : ApiController

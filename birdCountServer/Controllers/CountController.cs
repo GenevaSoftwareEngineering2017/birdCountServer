@@ -67,11 +67,11 @@ namespace birdCountServer.Controllers
                             {
                                 var add = new Count();
                                 add.Id = reader.GetInt32(0);
-                                add.TeamId = reader.GetInt32(0);
-                                add.BirdId = reader.GetInt32(0);
-                                add.TeamName = reader.GetString(1);
-                                add.BirdName = reader.GetString(1);
-                                add.BirdCount = reader.GetInt32(0);
+                                add.TeamId = reader.GetInt32(1);
+                                add.BirdId = reader.GetInt32(2);
+                                add.TeamName = reader.GetString(3);
+                                add.BirdName = reader.GetString(4);
+                                add.BirdCount = reader.GetInt32(5);
                                 retCount.Add(add);
                             }
                         }

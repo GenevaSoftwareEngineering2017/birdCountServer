@@ -68,10 +68,10 @@ namespace birdCountServer.Controllers
                                 var add = new Members();
                                 add.Id = reader.GetInt32(0);
                                 add.FullName = reader.GetString(1);
-                                add.Email = reader.GetString(1);
-                                add.HomeAddress = reader.GetString(1);
-                                add.TeamID = reader.GetString(1);
-                                add.PhoneNumber = reader.GetString(1);
+                                add.HomeAddress = reader.GetString(2);
+                                add.Email = reader.GetString(3);
+                                add.PhoneNumber = reader.GetString(4);
+                                add.TeamID = reader.GetInt32(5);                               
                                 retMembers.Add(add);
                             }
                         }
